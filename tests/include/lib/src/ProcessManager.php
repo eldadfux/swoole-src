@@ -280,6 +280,7 @@ class ProcessManager
         $this->runParentFunc($this->childPid = $this->childProcess->pid);
         Event::wait();
         $waitInfo = Process::wait(true);
+        var_dump($waitInfo, $this->expectExitSignal);
         $this->childStatus = $waitInfo['code'];
         if (!in_array($waitInfo['signal'], $this->expectExitSignal)) {
             throw new RuntimeException("Unexpected exit code {$waitInfo['signal']}");
